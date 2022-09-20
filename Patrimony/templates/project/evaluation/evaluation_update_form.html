@@ -1,0 +1,157 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <link href="{% static 'css/materialdesignicons.css' %}" rel="stylesheet"/>
+    <link rel="icon" type="image/png" href="/static/img/logo.png"/>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/compiled.css' %}" rel="stylesheet"/>
+
+    <script src="{% static 'js/jquery-2.1.0.min.js' %}" type="text/javascript"></script>
+
+
+    <script>
+        $(document).on("ready",function(){
+            $('input').attr('class','form-control');
+            $('select').attr('class','mdb-select');
+            $('textarea').attr('class','form-control md-textarea');
+            $('input').attr('max','10');
+            $('input').attr('min','0');
+        });
+    </script>
+</head>
+<body class="grey-skin" data-spy="scroll" data-target="#scrollspy" data-offset="15">
+<header>
+    {% include 'common/sidebar.html' %}
+    {% include 'common/navbar.html' %}
+</header>
+<div style="margin-top: 100px"></div>
+{{ user }}
+
+<main class="a">
+    <div class="main-wrapper">
+        <div class="container-fluid">
+            <section class="section text-center">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <table class="table table-bordered table-sm table-responsive-sm">
+                        <thead>
+                        <tr>
+                            <td colspan="4" style="background:grey">Proyecto</td>
+                            <td colspan="8" style="text-align: left"><h1 class="disabled">{{ form.project }}</h1></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="background:grey">Recurso</td>
+                            <td colspan="8" style="text-align: left" class="disabled">
+                                {{ form.resource }}
+                            </td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td colspan="2" style="background:grey">Significado</td>
+                            <td colspan="2" style="background:grey">Singularidad</td>
+                            <td colspan="2" style="background:grey">Representatividad</td>
+                            <td colspan="3" style="background:grey">Integridad</td>
+                            <td colspan="2" style="background:grey">Utilidad</td>
+                            <td rowspan="6" style="background:grey">Autenticidad</td>
+                        </tr>
+                        <tr>
+                            <td>Tipo</td>
+                            <td>Valor</td>
+                            <td>Tipo</td>
+                            <td>Valor</td>
+                            <td>Tipo</td>
+                            <td>Valor</td>
+                            <td colspan="2">Tipo</td>
+                            <td>Valor</td>
+                            <td>Tipo</td>
+                            <td>Valor</td>
+                        </tr>
+                        <tr>
+                            <td>Historico</td>
+                            <td>{{ form.historical_meaning }}</td>
+                            <td>Forma</td>
+                            <td>{{ form.historical_singularity }}</td>
+                            <td>Forma</td>
+                            <td>{{ form.historical_representativeness }}</td>
+                            <td rowspan="3">Interna</td>
+                            <td>Cuantitativa</td>
+                            <td>{{ form.integrity_it_interns_quantitative }}</td>
+                            <td rowspan="2">Eonomico</td>
+                            <td rowspan="2">{{ form.economic_utility }}</td>
+                        </tr>
+                        <tr>
+                            <td>Social</td>
+                            <td>{{ form.social_meaning }}</td>
+                            <td>Funcion</td>
+                            <td>{{ form.social_singularity }}</td>
+                            <td>Funcion</td>
+                            <td >{{ form.social_representativeness }}</td>
+                            <td rowspan="2">Cualitativa</td>
+                            <td rowspan="2">{{ form.integrity_it_interns_qualitative }}</td>
+                        </tr>
+                        <tr>
+                            <td rowspan="2">Natural</td>
+                            <td rowspan="2">{{ form.natural_meaning }}</td>
+                            <td>Espacial</td>
+                            <td>{{ form.natural_singularity_space }}</td>
+                            <td>Espacial</td>
+                            <td>
+                                {{ form.natural_representativeness_space }}
+                            </td>
+                            <td rowspan="2">Social</td>
+                            <td rowspan="2">{{ form.social_utility }}</td>
+                        </tr>
+                        <tr>
+
+                            <td>Temporal</td>
+                            <td>{{ form.natural_singularity_storm }}</td>
+                            <td>Temporal</td>
+                            <td >{{ form.natural_representativeness_storm }}</td>
+                            <td colspan="2">Ambiental</td>
+                            <td>{{ form.natural_integrity }}</td>
+                        </tr>
+                        <tr>
+                            <td>Valor general</td>
+                            <td></td>
+                            <td style="background:grey"></td>
+                            <td></td>
+                            <td style="background:grey"></td>
+                            <td ></td>
+                            <td colspan="2" style="background:grey"></td>
+                            <td ></td>
+                            <td style="background:grey"></td>
+                            <td ></td>
+                            <td ></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Evaluación cualitativa:</td>
+                            <td colspan="9" style="text-align: left" class="disabled">
+                                <div class="md-form ">
+                                    {{ form.qualitative_evaluation }}
+                                </div>
+
+                            </td>
+                        </tr>
+                        </tbody>
+
+                    </table>
+                    <input type="submit" class="btn btn-red" value="Update" />
+                </form>
+            </section>
+        </div>
+    </div>
+</main>
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/popper.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/compiled.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/footer-functions.js' %}" type="text/javascript"></script>
+<div class="drag-target" style="left: 0px; touch-action: pan-y; -moz-user-select: none;"></div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+{% load staticfiles %}
+{% load static %}
+<!DOCTYPE html>
+<html style="" class=" no-touchevents devicemotion deviceorientation">
+<head>
+    <meta charset="UTF-8">
+
+    <link href="{% static 'leaflet/leaflet.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/materialdesignicons.css' %}" rel="stylesheet"/>
+    <link rel="icon" type="image/png" href="/static/img/logo.png"/>
+    <link href="{% static 'css/compiled.css' %}" rel="stylesheet"/>
+</head>
+<body>
+<p>[{{ geolocalization.lat }};{{ geolocalization.lng }}]</p>
+<div id="mapid"></div>
+<style>
+    #mapid{
+        height: 400px;
+    }
+</style>
+
+<script src="{% static 'leaflet/leaflet.js' %}"></script>
+
+<script>
+    //azul
+    var mymap = L.map('mapid').setView([{{ geolocalization.lat }}, {{ geolocalization.lng }}], 13);
+    //abajo
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        attribution: 'IPF-Hlg &copy; <a href="#">Home</a> contributors, <a href="#">UHo</a>, Diseño © <a href="#">Nosotros</a>',
+        maxZoom: 18,
+        id: 'mapbox.streets',
+        accessToken: 'your.mapbox.access.token'
+    }).addTo(mymap);
+
+
+    var marker = L.marker([{{ geolocalization.lat }}, {{ geolocalization.lng }}]).addTo(mymap);
+    //popup
+
+    var popup = L.popup()
+        .setLatLng([{{ geolocalization.lat }}, {{ geolocalization.lng }}])
+        .setContent("<b>{{ resource.name }}</b><br />Cordenada: (" + [{{ geolocalization.lat }},{{ geolocalization.lng }}]+ ")")
+        .openOn(mymap);
+
+    var popup = L.popup();
+
+    function onMapClick(e) {
+        popup
+            .setLatLng(e.latlng)
+            .setContent("Esta es la cordenada " + e.latlng.toString())
+            .openOn(mymap);
+    }
+    mymap.on('click', onMapClick);
+</script>
+<script src="{% static 'js/jquery-3.2.1.min.js' %}" type="text/javascript"></script>
+</body>
+</html>

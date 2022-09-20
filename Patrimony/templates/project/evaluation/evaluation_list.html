@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{ project.name }} a {{ project.resource.name }} </h1>
+ <ol>
+{% for evaluation in evaluation %}
+
+    <li>{{ evaluation.resource }}---<a href="{% url 'evaluation_update' evaluation.pk %}">modificar</a> --<a href="{% url 'evaluation_delete' evaluation.pk %}">Eliminar</a> ------{{ evaluation.time_create }}</li>
+
+{% endfor %}
+
+</ol>
+</body>
+</html>

@@ -1,0 +1,94 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="{% static 'css/o/font-awesome.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/materialdesignicons.css' %}" rel="stylesheet"/>
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/compiled.css' %}" rel="stylesheet"/>
+
+    <script src="{% static 'js/jquery-2.1.0.min.js' %}" type="text/javascript"></script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body class="grey-skin" data-spy="scroll" data-target="#scrollspy" data-offset="15">
+<header>
+    {% include 'common/sidebar.html' %}
+    {% include 'common/navbar.html' %}
+</header>
+<h2>Recursos</h2>
+<main class="a">
+    <div class="main-wrapper">
+        <div class="container-fluid">
+            <div style="margin-top: 70px"></div>
+            <section class="section text-center">
+                <h2 class="font-weight-bold h1 py-5">
+                    <strong>Todos los recrsos existentes ({{ object_list.count }})</strong>
+                </h2>
+                <div class="row mb-6">
+                    {% for resource in object_list %}
+                        <!--Grid column-->
+                        <div class="col-lg-3 col-md-12 mb-2">
+                            <!--Card-->
+                            <div class="card card-cascade wider card-ecommerce">
+                                <!--Card image-->
+                                <div class="view overlay">
+                                    <img src="/static/media/{{ resource.image }}" class="img-fluid" alt="sample photo">
+                                    <a>
+                                        <div class="mask rgba-white-slight waves-effect waves-light"></div>
+                                    </a>
+                                </div>
+                                <!--Card image-->
+                                <!--Card content-->
+                                <div class="card-body text-center no-padding">
+                                    <!--Category & Title-->
+                                    <a href="" class="text-muted">
+                                        <h5>{{ resource.reference_time }}</h5>
+                                    </a>
+                                    <h4 class="card-title">
+                                        <strong>
+                                            <a href="{% url 'resource_detail' resource.pk %}">{{ resource.name }}</a>
+                                        </strong>
+                                    </h4>
+                                    <!--Description-->
+                                    <p class="card-text">{{ resource.description }}</p>
+                                    <!--Card footer-->
+                                    <div class="card-footer">
+                                <span class="float-left font-weight-bold">
+                                    {% if resource.protection_grade %}
+                                        <strong>{{ resource.protection_grade }}</strong>
+                                    {% else %}
+                                        #
+                                    {% endif %}
+                                </span>
+                                <span class="float-right">
+                                    <a href="{% url 'geo_localization_show' resource.pk %}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver geolocalizacion">
+                                        <i class="mdi mdi-google-maps grey-text ml-3"></i>
+                                    </a>
+                                    <a href="{% url 'fixing_actions_show' resource.pk %}" class="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ver acciones correctivas y evaluaciones">
+                                        <i class="mdi mdi-image-album grey-text ml-3"></i>
+                                    </a>
+                                </span>
+                                    </div>
+                                </div>
+                                <!--Card content-->
+                            </div>
+                            <!--Card-->
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </div>
+</main>
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/compiled.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/footer-functions.js' %}" type="text/javascript"></script>
+</body>
+</html>

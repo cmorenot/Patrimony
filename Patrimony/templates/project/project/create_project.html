@@ -1,0 +1,236 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <link href="{% static 'css/materialdesignicons.css' %}" rel="stylesheet"/>
+    <link rel="icon" type="image/png" href="/static/img/logo.png"/>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/compiled.css' %}" rel="stylesheet"/>
+
+    <script src="{% static 'js/jquery-2.1.0.min.js' %}" type="text/javascript"></script>
+
+
+    <script>
+        $(document).on("ready",function(){
+            $('input').attr('class','form-control');
+            $('textarea').attr('class','form-control md-textarea');
+        });
+    </script>
+</head>
+
+<body class="grey-skin" data-spy="scroll" data-target="#scrollspy" data-offset="15">
+<script>
+    $('.datepicker').pickadate({
+        closeOnSelect: false,
+        closeOnClear: false
+    });
+
+    $('#input_starttime').pickatime({
+        twelvehour: true
+    });
+    $('#input_endtime').pickatime({
+        darktheme: true,
+        twelvehour: false
+    });
+</script>
+
+<header>
+    {% include 'common/sidebar.html' %}
+    {% include 'common/navbar.html' %}
+</header>
+
+<main class="a">
+    <div class="main-wrapper">
+        <div class="container-fluid">
+            <div style="margin-top: 100px"></div>
+            {% if user.boss %}
+                <div style="margin-top: 100px"></div>
+                <section>
+
+                    <div class="row">
+                        <div class="col-md-12 mb-10">
+                            <div class="card mx-xl-10">
+                                <form action="." method="post">
+                                    {% csrf_token %}
+                                    <div class="card-body">
+
+                                        <div class="form-header">
+                                            <h3>
+                                                Crear proyecto
+                                            </h3>
+                                            <p style="color: red">{{ msg }}</p>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <ul class="nav  md-pills pills-primary flex-column" role="tablist">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" data-toggle="tab" href="#panel21" role="tab">Descripciones Generales
+                                                            <i class="mdi mdi-pencil ml-2"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#panel22" role="tab">Seleccionar
+                                                            <i class="mdi mdi-check ml-2"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" data-toggle="tab" href="#panel23" role="tab">Fechas
+                                                            <i class="mdi mdi-calendar ml-2"></i>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+                                            <div class="col-md-9">
+
+                                                <div class="tab-content vertical">
+                                                    <div class="tab-pane fade in show active" id="panel21" role="tabpanel">
+                                                        <h5 class="my-2 h5">Descripción</h5>
+                                                        <div class="col-md-3 mb-2">
+                                                            <div class="md-form font-weight-light">
+                                                                <i class="mdi mdi-rename-box prefix grey-text"></i>
+                                                                {{ form.name }}
+                                                                {% for error in form.name.errors %}
+                                                                    <p style="color: red">{{ error }}</p>
+                                                                {% endfor %}
+                                                                <label >
+                                                                    Nombre:
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-9 mb-8">
+                                                            <div class="md-form font-weight-light">
+                                                                <i class="mdi mdi-folder-outline prefix grey-text"></i>
+                                                                {{ form.objective }}
+                                                                {% for error in form.objective.errors %}
+                                                                    <p style="color: red">{{ error }}</p>
+                                                                {% endfor %}
+                                                                <label>Objetivo:</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="tab-pane fade" id="panel22" role="tabpanel">
+                                                        <h5 class="my-2 h5">Integrantes y recurso</h5>
+                                                        <div class="row">
+                                                            <div class="col-md-6 mb-2">
+                                                                <div class="md-form font-weight-light">
+                                                                    <i class="mdi mdi-account-multiple grey-text"></i>
+                                                                    {{ form.authors }}
+
+                                                                    {% for error in form.authors.errors %}
+                                                                        <p style="color: red">{{ error }}</p>
+                                                                    {% endfor %}
+                                                                    <label>Integrantes:</label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6 mb-2">
+                                                                <div class="md-form font-weight-light">
+                                                                    <i class="mdi mdi-home-variant grey-text"></i>
+                                                                    {{ form.resource }}
+                                                                    {% for error in form.resource.errors %}
+                                                                        <p style="color: red">{{ error }}</p>
+                                                                    {% endfor %}
+                                                                    <label>Recurso objetivo:</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="panel23" role="tabpanel">
+                                                        <h5 class="my-2 h5">Fecha</h5>
+                                                        <div class="row">
+                                                            <div class="col-md-5 mb-4">
+                                                                <div class="md-form font-weight-light">
+                                                                    <i class="mdi mdi-calendar-blank prefix grey-text"></i>
+                                                                    {{ form.start_up }}
+                                                                    {% for error in form.start_up.errors %}
+                                                                        <p style="color: red">{{ error }}</p>
+                                                                    {% endfor %}
+                                                                    <label>Fecha de inicio</label>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-5 mb-4">
+                                                                <div class="md-form font-weight-light">
+                                                                    <i class="mdi mdi-calendar-check prefix grey-text"></i>
+                                                                    {{ form.start_end }}
+                                                                    {% for error in form.start_end.errors %}
+                                                                        <p style="color: red">{{ error }}</p>
+                                                                    {% endfor %}
+                                                                    <label>Fecha de terminado</label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--/.Panel 3-->
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="options font-weight-light">
+                                            <div class="text-center mt-4">
+                                                <a href="{% url 'home' %}" class="btn purple-gradient btn-sm waves-effect waves-light">Atras<i class="mdi mdi-keyboard-return prefix white-text ml-3"></i></a>
+                                                <button class="btn purple-gradient btn-sm waves-effect waves-light" type="reset">Borrar campos<i class="mdi mdi-eraser prefix white-text ml-3"></i></button>
+                                                <button class="btn purple-gradient btn-sm waves-effect waves-light" type="submit">Crear<i class="mdi mdi-content-save prefix white-text ml-3"></i></button>
+                                            </div>
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6"></div>
+
+                    </div>
+                </section>
+            {% else %}
+                <i class="mdi mdi-alert prefix red-text fa-5x"></i>
+                <p style="color: red">No tienes permiso para poder crear un proyecto,solo el administrador del sitio puede concederle ese permiso
+                </p>
+                <div style="margin-top: 100px"></div>
+
+            {% endif %}
+
+        </div>
+    </div>
+</main>
+<script>
+    $("#date-picker-example").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd-mm-YYYY'
+    });
+</script>
+
+<!-----estas son las lib js para que salga el setting user y desplasamiento---->
+<script src="{% static 'js/jquery-3.2.1.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/popper.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/compiled.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/footer-functions.js' %}" type="text/javascript"></script>
+
+<script>
+    $('.datepicker').pickadate({
+        closeOnSelect: false,
+        closeOnClear: false
+    });
+
+    $('#input_starttime').pickatime({
+        twelvehour: true
+    });
+    $('#input_endtime').pickatime({
+        darktheme: true,
+        twelvehour: false
+    });
+</script>
+
+<div class="drag-target" style="left: 0px; touch-action: pan-y; -moz-user-select: none;"></div>
+</body>
+</html>

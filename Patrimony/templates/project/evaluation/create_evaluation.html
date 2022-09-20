@@ -1,0 +1,331 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <link href="{% static 'css/materialdesignicons.css' %}" rel="stylesheet"/>
+    <link rel="icon" type="image/png" href="/static/img/logo.png"/>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/compiled.css' %}" rel="stylesheet"/>
+
+    <script src="{% static 'js/jquery-2.1.0.min.js' %}" type="text/javascript"></script>
+
+
+    <script>
+        $(document).on("ready",function(){
+            $('input').attr('class','form-control');
+            $('select').attr('class','mdb-select');
+            $('textarea').attr('class','form-control md-textarea');
+            $('input').attr('max','10');
+            $('input').attr('min','0');
+        });
+    </script>
+</head>
+<body class="grey-skin" data-spy="scroll" data-target="#scrollspy" data-offset="15">
+<script>
+    $('.datepicker').pickadate({
+        closeOnSelect: false,
+        closeOnClear: false
+    });
+
+    $('#input_starttime').pickatime({
+        twelvehour: true
+    });
+    $('#input_endtime').pickatime({
+        darktheme: true,
+        twelvehour: false
+    });
+</script>
+<header>
+    {% include 'common/sidebar.html' %}
+    {% include 'common/navbar.html' %}
+</header>
+<style>
+    @media(min-width: 1500px ) {
+        .a {
+            margin-left: 250px;
+        }
+    }
+    .form-dark .font-small {
+        font-size: 0.8rem; }
+
+    .form-dark [type="radio"] + label,
+    .form-dark [type="checkbox"] + label {
+        font-size: 0.8rem; }
+
+    .form-dark [type="checkbox"] + label:before {
+        top: 2px;
+        width: 15px;
+        height: 15px; }
+
+    .form-dark .md-form label {
+        color: #fdf8ff; }
+
+    .form-dark input[type=text]:focus:not([readonly]) {
+        border-bottom: 1px solid #fffe85;
+        -webkit-box-shadow: 0 1px 0 0 #00C851;
+        box-shadow: 0 1px 0 0 #00C851; }
+
+    .form-dark input[type=text]:focus:not([readonly]) + label {
+        color: #ebf0ff; }
+
+    .form-dark input[type=email]:focus:not([readonly]) + label {
+        color: #344fff; }
+
+    .select-dropdown {
+        color: #000000; }
+
+    .form-dark input[type=password]:focus:not([readonly]) {
+        border-bottom: 1px solid #00C851;
+        -webkit-box-shadow: 0 1px 0 0 #00C851;
+        box-shadow: 0 1px 0 0 #00C851; }
+
+    .form-dark input[type=password]:focus:not([readonly]) + label {
+        color: #000000; }
+
+    .form-dark input[type="checkbox"] + label:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 17px;
+        height: 17px;
+        z-index: 0;
+        border: 1.5px solid #867cff;
+        border-radius: 1px;
+        margin-top: 2px;
+        -webkit-transition: 0.2s;
+        transition: 0.2s; }
+
+    .form-dark input[type="checkbox"]:checked + label:before {
+        top: -4px;
+        left: -3px;
+        width: 12px;
+        height: 22px;
+        border-style: solid;
+        border-width: 2px;
+        border-color: transparent #00c851 #00c851 transparent;
+        -webkit-transform: rotate(40deg);
+        -ms-transform: rotate(40deg);
+        transform: rotate(40deg);
+        -webkit-backface-visibility: hidden;
+        -webkit-transform-origin: 100% 100%;
+        -ms-transform-origin: 100% 100%;
+        transform-origin: 100% 100%; }
+
+</style>
+                <div style="margin-top: 100px"></div>
+{% if user.boss %}
+    <main class="a">
+        <div class="main-wrapper">
+            <div class="container-fluid">
+                <section class="section text-center">
+                    {% if user.boss%}
+                        <form action="." method="post">
+                            {% csrf_token %}
+
+                            <table class="table table-bordered table-sm table-responsive-sm">
+                                <thead>
+                                <tr>
+                                    <td colspan="4" style="background:grey">Recurso</td>
+                                    <td colspan="8" style="text-align: left"><h1>{{ project.resource.name }}</h1></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="background:grey">Tipo</td>
+                                    <td colspan="8" style="text-align: left">
+
+                                        {% if project.resource.type %}
+                                            {{ project.resource.type }}
+                                        {% else %}
+                                            Tipo desconocido
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="background:grey">Epoca de Referencia</td>
+                                    <td colspan="8" style="text-align: left">
+                                        {% if project.resource.reference_time %}
+                                            {{ project.resource.reference_time }}
+                                        {% else %}
+                                            Fecha desconocida
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" style="background:grey">Grado de proteccion</td>
+                                    <td colspan="8" style="text-align: left">{{ project.resource.protection_grade }}</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td colspan="2" style="background:grey">Significado</td>
+                                    <td colspan="2" style="background:grey">Singularidad</td>
+                                    <td colspan="2" style="background:grey">Representatividad</td>
+                                    <td colspan="3" style="background:grey">Integridad</td>
+                                    <td colspan="2" style="background:grey">Utilidad</td>
+                                    <td rowspan="6" style="background:grey">Autenticidad</td>
+                                </tr>
+                                <tr>
+                                    <td>Tipo</td>
+                                    <td>Valor</td>
+                                    <td>Tipo</td>
+                                    <td>Valor</td>
+                                    <td>Tipo</td>
+                                    <td>Valor</td>
+                                    <td colspan="2">Tipo</td>
+                                    <td>Valor</td>
+                                    <td>Tipo</td>
+                                    <td>Valor</td>
+                                </tr>
+                                <tr>
+                                    <td>Historico</td>
+                                    <td>{{ form.historical_meaning }}</td>
+                                    <td>Forma</td>
+                                    <td>{{ form.historical_singularity }}</td>
+                                    <td>Forma</td>
+                                    <td>{{ form.historical_representativeness }}</td>
+                                    <td rowspan="3">Interna</td>
+                                    <td>Cuantitativa</td>
+                                    <td>{{ form.integrity_it_interns_quantitative }}</td>
+                                    <td rowspan="2">Eonomico</td>
+                                    <td rowspan="2">{{ form.economic_utility }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Social</td>
+                                    <td>{{ form.social_meaning }}</td>
+                                    <td>Funcion</td>
+                                    <td>{{ form.social_singularity }}</td>
+                                    <td>Funcion</td>
+                                    <td >{{ form.social_representativeness }}</td>
+                                    <td rowspan="2">Cualitativa</td>
+                                    <td rowspan="2">{{ form.integrity_it_interns_qualitative }}</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">Natural</td>
+                                    <td rowspan="2">{{ form.natural_meaning }}</td>
+                                    <td>Espacial</td>
+                                    <td>{{ form.natural_singularity_space }}</td>
+                                    <td>Espacial</td>
+                                    <td>
+                                        {{ form.natural_representativeness_space }}
+                                    </td>
+                                    <td rowspan="2">Social</td>
+                                    <td rowspan="2">{{ form.social_utility }}</td>
+                                </tr>
+                                <tr>
+
+                                    <td>Temporal</td>
+                                    <td>{{ form.natural_singularity_storm }}</td>
+                                    <td>Temporal</td>
+                                    <td >{{ form.natural_representativeness_storm }}</td>
+                                    <td colspan="2">Ambiental</td>
+                                    <td>{{ form.natural_integrity }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Valor general</td>
+                                    <td></td>
+                                    <td style="background:grey"></td>
+                                    <td></td>
+                                    <td style="background:grey"></td>
+                                    <td ></td>
+                                    <td colspan="2" style="background:grey"></td>
+                                    <td ></td>
+                                    <td style="background:grey"></td>
+                                    <td ></td>
+                                    <td ></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="12">Valor general del recurso {{ project.resource.id }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">Evaluación cualitativa:</td>
+                                    <td colspan="9" style="text-align: left">
+                                        <div class="md-form disable">
+                                            {{ form.qualitative_evaluation }}
+                                            <label for="textareaPrefix">"{{ project.resource.name }}"</label>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                </tbody>
+
+                            </table>
+                            <button type="submit" class="btn btn-elegant">Guardar</button>
+                        </form>
+                    {% else %}
+
+                        {% if user.category == 0%}
+                            <h1>No tiene rol y no es jefe</h1>
+                        {% endif %}
+
+                        {% if user.category == 1 %}
+                            <h1>Ing. Civil</h1>
+                        {% endif %}
+
+                        {% if user.category == 2 %}
+                            <h1>Geografo</h1>
+                            {% include 'project/evaluation/evaluation_rol_natural.html' %}
+                        {% endif %}
+
+                        {% if user.category == 3 %}
+                            <h1>Sociologo</h1>
+                            {% include 'project/evaluation/evaluation_rol_social.html' %}
+                        {% endif %}
+
+                        {% if user.category == 4 %}
+                            <h1>Demogragfo</h1>
+                        {% endif %}
+
+                        {% if user.category == 5 %}
+                            <h1>Arquitecto</h1>
+                            {% include 'project/evaluation/evaluation_rol_social.html' %}
+                            {% include 'project/evaluation/evaluation_rol_historical.html' %}
+                        {% endif %}
+
+                    {% endif %}
+                </section>
+            </div>
+        </div>
+    </main>
+{% else %}
+    <i class="mdi mdi-alert prefix red-text fa-5x"></i>
+    <p style="color: red">No tienes permiso para poder crear una evaluacion,solo el administrador del sitio puede concederle ese permiso
+    </p>
+    <div style="margin-top: 100px"></div>
+{% endif %}
+
+<script>
+    $("#date-picker-example").datepicker({
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: 'dd-mm-YYYY'
+    });
+</script>
+
+<!-----estas son las lib js para que salga el setting user y desplasamiento---->
+<script src="{% static 'js/jquery-3.2.1.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/popper.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/compiled.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/footer-functions.js' %}" type="text/javascript"></script>
+
+<script>
+    $('.datepicker').pickadate({
+        closeOnSelect: false,
+        closeOnClear: false
+    });
+
+    $('#input_starttime').pickatime({
+        twelvehour: true
+    });
+    $('#input_endtime').pickatime({
+        darktheme: true,
+        twelvehour: false
+    });
+</script>
+
+<div class="drag-target" style="left: 0px; touch-action: pan-y; -moz-user-select: none;"></div>
+</body>
+</html>

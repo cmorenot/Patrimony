@@ -1,0 +1,190 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="full-height">
+<head class="view">
+    <meta charset="UTF-8">
+    <title>IPF|Inicio</title>
+    <link rel="icon" type="image/png" href="{% static 'img/background/logo.png' %}"/>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/mdb.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet"/>
+
+    <style>
+        .intro-2 {
+            background: url("../../static/img/background/00.jpg") no-repeat center center;
+            background-size: cover;
+        }
+
+        .a {
+            background: url("../../static/img/background/logo.png") no-repeat center center;
+            background-size: cover;
+            height: 20px;
+            width: 20px;
+            max-height: 50px;
+            min-width: 50px;
+        }
+
+        .top-nav-collapse {
+            background-color: rgba(138, 162, 181, 0.33) !important;
+        }
+
+        .navbar:not(.top-nav-collapse) {
+            background: transparent !important;
+        }
+
+        @media (max-width: 768px) {
+            .navbar:not(.top-nav-collapse) {
+                background: rgba(63, 81, 181, 0.35) !important;
+            }
+        }
+
+        .custom-gradient .full-bg-img {
+            background: -webkit-linear-gradient(45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+            background: -webkit-gradient(linear, 45deg, from(rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%)));
+            background: linear-gradient(to 45deg, rgba(0, 0, 0, 0.7), rgba(72, 15, 144, 0.4) 100%);
+        }
+
+        .card {
+            background-color: rgba(126, 123, 215, 0.2);
+        }
+
+        .md-form .prefix {
+            font-size: 1.5rem;
+        }
+
+        .md-form label {
+            color: #ffffff;
+        }
+
+        h6 {
+            line-height: 1.7;
+        }
+
+        @media (max-width: 740px) {
+            .full-height,
+            .full-height body,
+            .full-height header,
+            .full-height header .view {
+                height: 1040px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+
+<!--Main Navigation-->
+
+<!--Main Navigation-->
+<header>
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+        <a class="navbar-brand" href="#"><strong>IPF</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Página principal <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Opción</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Opción</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Opción</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav nav-flex-icons">
+                <li class="nav-item">
+                    <a class="nav-link"><i class="fa fa-facebook"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"><i class="fa fa-instagram"></i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!--Intro Section-->
+    <section class="view intro-2 custom-gradient card card-image">
+        <div class="full-bg-img" style="background-color: rgba(206,185,255,0.33)">
+            <div class="container flex-center">
+                <div class="d-flex align-items-center content-height">
+                    <div class="row flex-center pt-5 mt-3">
+                        <div class="col-md-6 text-center text-md-left mb-5">
+                            <div class="white-text">
+                                <h1 class="h1-responsive font-weight-bold wow fadeInLeft" data-wow-delay="0.3s">Entra ahora! </h1>
+                                <hr class="hr-light mb-5 wow fadeInLeft" data-wow-delay="0.3s">
+                                <h6 class="wow fadeInLeft" data-wow-delay="0.3s">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem repellendus quasi fuga nesciunt
+                                    dolorum nulla magnam veniam sapiente, fugiat! Commodi sequi non animi ea dolor molestiae,
+                                    quisquam iste, maiores. Nulla.</h6>
+                                <br>
+                                <a class="btn btn-outline-white wow fadeInLeft" data-wow-delay="0.3s">Leer mas...</a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-xl-5 ">
+                            <!--Form-->
+                            <div class="card wow fadeInRight form-dark " data-wow-delay="0.3s">
+                                <div class="card-body card" style="background-color: rgba(0,0,0,0.54);">
+                                    <!--Header-->
+                                    <div class="text-center">
+                                        <h3 class="white-text">
+                                            <i class="fa fa-user white-text"></i> Entar:</h3>
+                                        <hr class="hr-light">
+                                    </div>
+                                    <!--Body-->
+                                    <form action="" method="post">
+                                        {% csrf_token %}
+                                        <div class="md-form">
+                                            <i class="fa fa-user prefix white-text"></i>
+                                            <input name="username" type="text" id="form3" class="form-control white-text">
+                                            <label for="form3">Usuario</label>
+                                        </div>
+
+                                        <div class="md-form">
+                                            <i class="fa fa-lock prefix white-text active"></i>
+                                            <input name="password" type="password" id="form4" class="form-control white-text">
+                                            <label for="form4">Contraseña</label>
+                                        </div>
+
+                                        <div class="text-center mt-4">
+                                            <button class="btn btn btn-outline-info" type="submit">Entar</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!--/.Form-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</header>
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/popper.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/mdb.js' %}" type="text/javascript"></script>
+
+<script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/mdb.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap.js' %}" type="text/javascript"></script>
+
+
+
+</body>
+</html>

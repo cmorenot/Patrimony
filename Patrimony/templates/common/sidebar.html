@@ -1,0 +1,137 @@
+<div id="slide-out" class="side-nav sn-bg-4 fixed mdb-sidenav" style="transform: translateX(-100%);">
+    <ul class="custom-scrollbar list-unstyled ps ps--theme_default ps--active-y" style="max-height:100vh;">
+        <li class="logo-sn waves-light  waves-effect waves-light">
+
+            <img id="IPF-logo" src="../../static/img/background/logo2.png" alt="No se ha podido cargar la imagen Logo">
+
+        </li>
+        <li>
+
+            <ul class="social">
+                <li><a href="#" class="icons-sm fb-ic"><i class="mdi mdi-facebook"> </i></a></li>
+                <li><a href="#" class="icons-sm pin-ic"><i class="mdi mdi-pinterest"> </i></a></li>
+                <li><a href="#" class="icons-sm gplus-ic"><i class="mdi mdi-google-plus"> </i></a></li>
+                <li><a href="#" class="icons-sm tw-ic"><i class="mdi mdi-twitter"> </i></a></li>
+            </ul>
+        </li>
+        <li>
+            <ul id="side-menu" class="collapsible collapsible-accordion">
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-43625">
+                    <a class="collapsible-header waves-effect arrow-r">
+                        <i class="mdi mdi-home-modern"></i>
+                        Recursos
+                        <i class="mdi mdi-chevron-up rotate-icon"></i>
+                    </a>
+                    <div class="collapsible-body">
+                        <ul class="sub-menu">
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-51838">
+                                <a class="collapsible-header waves-effect" id="link-menu-item-51838" href="{% url 'create_resource' %}">
+                                    Añadir recurso
+                                </a>
+                            </li>
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-51838">
+                                <a class="collapsible-header waves-effect" id="link-menu-item-51838" href="{% url 'list_resource' %}">
+                                    Ver recursos existentes
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <ul id="side-menu" class="collapsible collapsible-accordion">
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-43625">
+                    <a class="collapsible-header waves-effect arrow-r">
+                        <i class="mdi mdi-folder-account"></i>
+                        Proyectos
+                        <i class="mdi mdi-chevron-up rotate-icon"></i>
+                    </a>
+                    <div class="collapsible-body">
+                        <ul class="sub-menu">
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-51838">
+                                    <a class="collapsible-header waves-effect" id="link-menu-item-51838" href="{% url 'create_project' %}">
+                                        Crear proyecto*
+                                    </a>
+                            </li>
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-51838">
+                                <a class="collapsible-header waves-effect" id="link-menu-item-51838" href="{% url 'my_project_list' %}">
+                                    Ver mis proyectos
+                                </a>
+                            </li>
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-51838">
+                                <a class="collapsible-header waves-effect" id="link-menu-item-51838" href="{% url 'project_list' %}">
+                                    Ver todos los proyectos
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <ul id="side-menu" class="collapsible collapsible-accordion">
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-43625">
+                    <a class="collapsible-header waves-effect arrow-r">
+                        <i class="mdi mdi-share-variant"></i>
+                        Transferencias
+                        <i class="mdi mdi-chevron-up rotate-icon"></i>
+                    </a>
+                    <div class="collapsible-body">
+                        <ul class="sub-menu">
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-51838">
+                                <a class="collapsible-header waves-effect" id="link-menu-item-51838" href="{% url 'transition_for_my' %}">
+                                    Transferencias para mi
+                                </a>
+                            </li>
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-51838">
+                                <a class="collapsible-header waves-effect" id="link-menu-item-51838" href="{% url 'my_transition_list' %}">
+                                    Transferencias por mi
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <ul id="side-menu" class="collapsible collapsible-accordion">
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-43625">
+                    <a class="collapsible-header waves-effect arrow-r">
+                        <i class="mdi mdi-google-maps"></i>
+                        Geolocalización
+                        <i class="mdi mdi-chevron-up rotate-icon"></i>
+                    </a>
+                    <div class="collapsible-body">
+                        <ul class="sub-menu">
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-51838">
+                                <a class="collapsible-header waves-effect" id="link-menu-item-51838" href="#">
+                                    Ver mapa de Holguín
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+            <ul id="side-menu" class="collapsible collapsible-accordion">
+                <li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-43625">
+                    <a class="collapsible-header waves-effect arrow-r">
+                        <i class="mdi mdi-image-area"></i>
+                        Áreas
+                        <i class="mdi mdi-chevron-up rotate-icon"></i>
+                    </a>
+                    <div class="collapsible-body">
+                        <ul class="sub-menu">
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-51838">
+                                    <a class="collapsible-header waves-effect" id="link-menu-item-51838" href="{% url 'create_area' %}">
+                                        Crear área*
+                                    </a>
+                            </li>
+                        </ul>
+                        <ul class="sub-menu">
+                            <li class="menu-item menu-item-type-post_type menu-item-object-page  menu-item-51838">
+                                <a class="collapsible-header waves-effect" id="link-menu-item-51838" href="{% url 'create_area' %}">
+                                    Ver áreas
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

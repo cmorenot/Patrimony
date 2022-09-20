@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+</head>
+<body>
+
+<h1>hi</h1>
+<form action="." method="post">
+    {% csrf_token %}
+<input type="number" id="id" max="10" min="0">
+
+<input type="submit" onsubmit="a();" value="save">
+</form>
+<script>
+      var variable = document.getElementById(id);
+
+			function a() {
+               if (variable.value==123)
+					alert("la contaseña es correcta");
+				else
+                  alert("Esta contraseña : " + contraseña.value + " es incorrecta");
+			}
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="full-height">
+<head class="view">
+    <meta charset="UTF-8">
+    <title>IPF|Inicio</title>
+    <link rel="icon" type="image/png" href="{% static 'img/background/logo.png' %}"/>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/mdb.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/mdb.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/font-awesome.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/compiled.css' %}" rel="stylesheet"/>
+
+    <link href="{% static 'css/materialdesignicons.css' %}" rel="stylesheet"/>
+
+    <style>
+        .top-nav-collapse {
+            background-color: #78909c !important;
+        }
+
+        .navbar:not(.top-nav-collapse) {
+            background: transparent !important;
+        }
+
+        @media (max-width: 768px) {
+            .navbar:not(.top-nav-collapse) {
+                background: #78909c !important;
+            }
+        }
+
+        h1 {
+            letter-spacing: 8px;
+        }
+
+        h5 {
+            letter-spacing: 3px;
+        }
+
+        .hr-light {
+            border-top: 3px solid #fff;
+            width: 80px;
+        }
+
+        @media (max-width: 740px) {
+            .full-height,
+            .full-height body,
+            .full-height header,
+            .full-height header .view {
+                height: 700px;
+            }
+        }
+    </style>
+
+</head>
+<body class="grey-skin">
+
+<header>
+
+    <!--Navbar-->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="/home"><strong>IPF</strong></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-7" aria-controls="navbarSupportedContent-7" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active" data-toggle="tooltip" data-placement="right" title="Solo para el administrador del sitio">
+                        <a class="nav-link" href="/admin">Administrador <span class="sr-only"></span></a>
+                    </li>
+                </ul>
+                <div class="form-inline">
+                    <ul class="navbar-nav mr-auto">
+                        {% if user.is_authenticated %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"><p style="float: left">{{ user }}</p></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logout' %}"> Salir</a>
+                            </li>
+                        {% else %}
+                            <a class="nav-link" href="#" data-toggle="modal" data-target="#modal">Identificarme</a>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Intro Section -->
+    <div class="view jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url({% static 'img/background/Parque Calixo Garcia.jpg' %});">
+        <div class="full-bg-img rgba-black-light">
+            <div class="container flex-center">
+                <div class="row pt-5 mt-3">
+                    <div class="col-md-12">
+                        <div class="text-center">
+
+                            <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-3 wow fadeInDown" data-wow-delay="0.3s"><strong>Página Principal de IPF</strong></h1>
+                            <hr class="hr-light mt-4 wow fadeInDown" data-wow-delay="0.4s">
+                            <h5 class="text-uppercase mb-5 white-text wow fadeInDown" data-wow-delay="0.4s"><strong>Patrimonio & Historia</strong></h5>
+
+
+                            {% if user.is_authenticated %}
+                                <a class="btn btn-outline-white wow fadeInDown" data-wow-delay="0.4s" href="{% url 'logout' %}">Salir</a>
+                            {% else %}
+                                <a class="btn btn-outline-white wow fadeInDown" data-wow-delay="0.4s" href="#" data-toggle="modal" data-target="#modal">Registrarme</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</header>
+<!-- Side Modal Top Right -->
+<div  class="modal fade right" id="modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-side modal-top-right" role="document" >
+        <!--Content-->
+        <div class="modal-content modal-sm">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title w-100" id="myModalLabel">Identifícate!</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <form action="" method="post">
+                {% csrf_token %}
+                <div class="modal-body">
+                    {{ msg }}
+                    <div class="modal-body mb-1">
+                        <div class="md-form form-sm">
+                            <i class="mdi mdi-account prefix"></i>
+                            <input id="form2" class="form-control form-control-sm" name="username" type="text">
+                            <label for="form2">Usuario:</label>
+                        </div>
+
+                        <div class="md-form form-sm">
+                            <i class="mdi mdi-key prefix"></i>
+                            <input id="form3" class="form-control form-control-sm" name="password" type="password">
+                            <label for="form3">Contraseña:</label>
+                        </div>
+                    </div>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success btn-block z-depth-1 waves-effect waves-light btn-sm" data-dismiss="modal">No lo deseo</button>
+                    <button type="submit" style="margin-top: 0; margin-left: 2px" class="btn btn-success btn-block z-depth-1 waves-effect waves-light btn-sm">Identificarme</button>
+                </div>
+                <div class="text-md-center">
+                    <p style="font-size: x-small">No eres un miembro?
+                        <a href="{% url 'signup' %}" class="green-text ml-1 font-weight-bold">Regístrate!</a>
+                    </p>
+
+                </div>
+
+            </form>
+        </div>
+
+        <!--/.Content-->
+    </div>
+</div>
+<!-- Side Modal Top Right -->
+
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/popper.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/mdb.js' %}" type="text/javascript"></script>
+
+<script src="{% static 'js/bootstrap.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/mdb.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'js/bootstrap.js' %}" type="text/javascript"></script>
+
+<script>
+    new WOW().init();
+</script>
+
+</body>
+</html>
